@@ -7,13 +7,13 @@
 (define (cube-iter guess x)
   (if (good-enough? guess x)
       guess
-      (improve guess x)))
+      (cube-iter (improve guess x) x)))
 
 (define (good-enough? guess x)
   (< (/ (abs (- guess
                 (improve guess x)))
         guess)
-     0.001))
+     0.0001))
 
 (define (improve guess x)
   (/ (+ (/ x
