@@ -1,1 +1,23 @@
 #lang racket
+(define (change money)
+  (define (kind-of-money number)
+    (cond ((= number 5) 50)
+          ((= number 4) 25)
+          ((= number 3) 10)
+          ((= number 2) 5)
+          ((= number 1) 1)
+          )
+    )
+
+  (define (change-iter money number)
+    (cond ((= money 0) 1)
+          ((or (< money 0)
+               (= number 0)) 0)
+          (else (+ (change-iter (- money (kind-of-money number)) number)
+                   (change-iter money (- number 1))
+                 ))
+          )
+    )
+
+  (change-iter money 5)
+  )
